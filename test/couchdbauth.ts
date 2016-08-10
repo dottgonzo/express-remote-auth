@@ -12,9 +12,6 @@ const app = express();
 const server = require("http").Server(app);
 
 
-
-
-
 before(function () {
 
     app.use('/auth', authrouter({ secret: "tt", app_id: "energytrack", couchdb: "https://couchman.kernel.online" }));
@@ -30,8 +27,7 @@ describe("authorize with couchdb", function () {
         this.timeout(30000);
 
         it("verificate authorization", function (done) {
-            superagent.get("localhost:21569/auth/authorize/couchdb/testconsumi/testconsumi0101").end((err, res) => {
-
+            superagent.get("http://localhost:21569/auth/authorize/couchdb/testconsumi/testconsumi0101").end((err, res) => {
 
                 if (err) {
                     done(err);
@@ -45,21 +41,14 @@ describe("authorize with couchdb", function () {
 
                 } else {
                     done(res.body.error)
-
                 }
             })
-
         })
-
-
     })
 })
 
-
 after(function () {
-
     server.close();
-
 })
 
 
