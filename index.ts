@@ -16,12 +16,13 @@ export default function (o: { secret: string, app_id: string, couchdb: string })
         authmodule.authorize({ provider: params.provider, user: params.user, password: params.password }).then((a) => {
             res.send(a)
         }).catch((err) => {
-            console.error(err)
+            res.send({error:err})
         })
 
 
     })
 
+return Router
 
 }
 
